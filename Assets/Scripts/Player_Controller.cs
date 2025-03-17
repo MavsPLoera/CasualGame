@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class Player_Controller : MonoBehaviour
 {
@@ -32,6 +33,8 @@ public class Player_Controller : MonoBehaviour
     public float jumpBufferDistance;
     public float coyoteTimer;
     public float coyoteTime = .2f;
+
+    [Header("Player Conditional Traits")]
     public bool playerCanInput = true;
     public bool canDoubleJump = true;
     public bool storedJump = false;
@@ -81,7 +84,9 @@ public class Player_Controller : MonoBehaviour
     public AudioClip hitSoundEffectSFX;
 
     [Header("Player Miscellaneous")]
-    private Transform lastPlacedTouched; //Used for when the player dies and needs to respawn.
+    public Transform lastTouched;
+    public GameObject gameUI;
+    public GameUI_Controller controller;
     public Rigidbody2D rb;
     public Collider2D col;
     public BetterJump_Controller BetterJump_Controller;
@@ -103,7 +108,11 @@ public class Player_Controller : MonoBehaviour
         trailRenderer = GetComponent<TrailRenderer>();
         animator = GetComponent<Animator>();
         playerHitBox = GetComponent<BoxCollider2D>();
+        controller = gameUI.GetComponent<GameUI_Controller>();
         currentSpawnLocation = bulletSpawnLocation.transform;
+        controller.updatePlayerLives();
+        controller.updateScore(0);
+
 
         //Set variables 
         uncrouchedHitBoxOffset = playerHitBox.offset;
@@ -117,7 +126,7 @@ public class Player_Controller : MonoBehaviour
     void Update()
     {
         //Do not allow input if the player is dashing.
-        if(isDashing || !playerCanInput)
+        if (isDashing || !playerCanInput)
         {
             return;
         }
@@ -140,7 +149,7 @@ public class Player_Controller : MonoBehaviour
         float y_raw = Input.GetAxisRaw("Vertical");
 
         Vector2 direction = new Vector2(x, 0);
-        Debug.DrawRay(transform.position, new Vector3(0, -jumpBufferDistance, 0), Color.red);
+        //Debug.DrawRay(transform.position, new Vector3(0, -jumpBufferDistance, 0), Color.red);
 
         //Move the player based on player speed and keep current y linear velocity
         flip(x_raw);
@@ -267,11 +276,11 @@ public class Player_Controller : MonoBehaviour
             {
                 StartCoroutine(reload());
             }
-            
-            if(!isReloading && onGround)
+            else if(!isReloading && onGround)
             { 
                 StartCoroutine(shoot());
             }
+            controller.updateAmmoImageUI();
 
         }
 
@@ -297,13 +306,14 @@ public class Player_Controller : MonoBehaviour
     {
         //Modify this to be coroutine to shoot and play animation.
         ammo--;
+        controller.updateAmmoImageUI();
         storedShot = false;
         animator.SetBool("isShooting", true);
         Instantiate(bullet, currentSpawnLocation.position, bulletSpawnLocation.transform.rotation);
         playerAudioSource.PlayOneShot(shootGunSFX);
         yield return new WaitForSeconds(shootTime);
         animator.SetBool("isShooting", false);
-
+        yield return null;
     }
 
     private IEnumerator dash(float x_raw)
@@ -328,10 +338,6 @@ public class Player_Controller : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(dashSpeed * x_raw, 0f);
         }
-        //rb.linearVelocity = new Vector2(dashSpeed * x_raw, 0f);
-        //float yVel = rb.linearVelocityY;
-        //rb.linearVelocity = transform.right * dashSpeed;
-        //rb.linearVelocityY += yVel;
 
         playSound(dashSFX);
         float prevGravity = rb.gravityScale;
@@ -345,6 +351,7 @@ public class Player_Controller : MonoBehaviour
         BetterJump_Controller.enabled = true;
         Physics2D.IgnoreLayerCollision(6, 7, false);
         rb.gravityScale = prevGravity;
+        yield return null;
     }
 
     private IEnumerator reload()
@@ -353,6 +360,9 @@ public class Player_Controller : MonoBehaviour
         yield return new WaitForSeconds(shootingCooldown);
         ammo = maxAmmo;
         isReloading = false;
+        controller.updateAmmoImageUI();
+
+        yield return null;
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -396,6 +406,7 @@ public class Player_Controller : MonoBehaviour
             currentMax = maxAirSpeed;
             playerSpeed = airSpeed;
             animator.SetBool("isJumping", true);
+            lastTouched = gameObject.transform;
             return false;
         }
     }
@@ -446,7 +457,6 @@ public class Player_Controller : MonoBehaviour
     public void playSound(AudioClip sound)
     {
         float temp = Random.Range(.9f, 1.1f);
-        Debug.Log(temp);
         playerChangingAudioSource.pitch = temp;
         playerChangingAudioSource.PlayOneShot(sound);
     }
@@ -470,14 +480,17 @@ public class Player_Controller : MonoBehaviour
         playerCanInput = true;
         beenHit = false;
         animator.SetBool("isHit", false);
+        yield return null;
     }
 
 
     //Add more to this
     public IEnumerator temporaryInvulnerability()
     {
+        //Physics2D.IgnoreLayerCollision(6, 7, true); can use this
         invulnerable = true;
         yield return new WaitForSeconds(.1f);
         invulnerable = false;
+        yield return null;
     }
 }

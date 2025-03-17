@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameUI_Controller : MonoBehaviour
 {
@@ -7,9 +8,11 @@ public class GameUI_Controller : MonoBehaviour
     public GameObject gameUI_Panel;
     public TextMeshProUGUI playerLivesText;
     public TextMeshProUGUI scoreText;
+    public int score = 0;
     public TextMeshProUGUI timerText;
     public float time = 300.0f;
     public TextMeshProUGUI ammoStatusText;
+    public GameObject[] bulletImages; 
 
     [Header("GameOver UI")]
     public GameObject gameOver_Panel;
@@ -29,7 +32,7 @@ public class GameUI_Controller : MonoBehaviour
         gameOver_Panel.SetActive(false);
         gameWin_Panel.SetActive(false);
         gameUI_Panel.SetActive(true);
-
+        scoreText.text = score.ToString();
         playerController = player.GetComponent<Player_Controller>();
     }
 
@@ -37,7 +40,43 @@ public class GameUI_Controller : MonoBehaviour
     void Update()
     {
         time -= Time.deltaTime;
-
         timerText.text = time.ToString(".");
+
+        if(time <= 0f)
+        {
+            //Call gameover on player
+        }
+    }
+
+    public void updateScore(int amount)
+    {
+        score += amount;
+        scoreText.text = "Score: " + score.ToString();
+    }
+
+    public void updatePlayerLives()
+    {
+        playerLivesText.text = "Lives: " + playerController.playerLives.ToString();
+    }
+
+    public void updateAmmoStatus(string message)
+    {
+        ammoStatusText.text = message;
+    }
+
+    public void updateAmmoImageUI()
+    {
+        for(int i = 0; i < playerController.maxAmmo; i++)
+        {
+            if (i < playerController.ammo)
+            {
+                bulletImages[i].SetActive(true);
+            }
+            else
+            {
+                bulletImages[i].SetActive(false);
+            }
+        }
+
     }
 }

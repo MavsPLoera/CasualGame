@@ -1613,7 +1613,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 'Ammo:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7306,9 +7306,21 @@ MonoBehaviour:
   gameUI_Panel: {fileID: 1557217907}
   playerLivesText: {fileID: 78633577}
   scoreText: {fileID: 1146329474}
+  score: 0
   timerText: {fileID: 660832500}
   time: 300
   ammoStatusText: {fileID: 0}
+  bulletImages:
+  - {fileID: 386038699}
+  - {fileID: 102050194}
+  - {fileID: 391722811}
+  - {fileID: 1270697545}
+  - {fileID: 216251583}
+  - {fileID: 1058392339}
+  - {fileID: 221913165}
+  - {fileID: 676194944}
+  - {fileID: 1077833577}
+  - {fileID: 976295308}
   gameOver_Panel: {fileID: 1181269737}
   gameWin_Panel: {fileID: 1830936128}
   player: {fileID: 1029756663}
@@ -7800,7 +7812,7 @@ MonoBehaviour:
   currentMax: 0
   jumpForce: 10
   slideTimer: 0
-  slideTime: 5
+  slideTime: 3
   facingRight: 1
   invulnerable: 0
   walkSpeed: 8
@@ -7834,7 +7846,7 @@ MonoBehaviour:
   isShooting: 0
   ammo: 6
   maxAmmo: 10
-  shootingCooldown: 2
+  shootingCooldown: 1
   shootTime: 0.05
   storedShot: 0
   playerHitBox: {fileID: 0}
@@ -7854,13 +7866,16 @@ MonoBehaviour:
   dashSFX: {fileID: 8300000, guid: 8df3916f4812b4d448fa902446bf4fb8, type: 3}
   footSteps: {fileID: 672363369}
   hitSoundEffectSFX: {fileID: 0}
+  lastTouched: {fileID: 0}
+  gameUI: {fileID: 821544731}
+  controller: {fileID: 0}
   rb: {fileID: 0}
   col: {fileID: 0}
   BetterJump_Controller: {fileID: 0}
   dustParticle: {fileID: 688417238}
   animator: {fileID: 0}
   boxSize: {x: 0.15, y: 0.1}
-  crouchBulletSpawn: {fileID: 0}
+  crouchBulletSpawn: {fileID: 1079597542}
   boxCastDistance: 0.5
   jumpingBoxCastDistance: 0.25
   beenHit: 0
