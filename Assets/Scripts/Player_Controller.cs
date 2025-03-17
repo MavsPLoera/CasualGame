@@ -9,7 +9,7 @@ public class Player_Controller : MonoBehaviour
 {
     [Header("Current Player Stats")]
     public float playerHealth;
-    public int playerLives;
+    public int playerLives = 3;
     public float playerSpeed;
     public float currentMax;
     public float jumpForce;
