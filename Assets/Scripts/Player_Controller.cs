@@ -14,7 +14,7 @@ public class Player_Controller : MonoBehaviour
     public float currentMax;
     public float jumpForce;
     public float slideTimer = 0.0f;
-    public float slideTime = .5f;
+    public float slideTime;
     public bool facingRight = true;
     public bool invulnerable = false;
 
