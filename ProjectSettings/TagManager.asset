@@ -14,9 +14,9 @@ TagManager:
   - ground
   - Water
   - UI
-  - Player
-  - Enemy
   - PickUp
+  - Enemy
+  - Player
   - 
   - 
   - 

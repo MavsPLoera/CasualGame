@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerLivesPickUp_Controller : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("coliision");
         if (collision.gameObject.CompareTag("Player"))

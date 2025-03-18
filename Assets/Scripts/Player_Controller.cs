@@ -90,6 +90,7 @@ public class Player_Controller : MonoBehaviour
     public Rigidbody2D rb;
     public Collider2D col;
     public BetterJump_Controller BetterJump_Controller;
+    public Camera playerCamera;
     public ParticleSystem dustParticle;
     public Animator animator;
     public Vector2 boxSize;
@@ -97,6 +98,7 @@ public class Player_Controller : MonoBehaviour
     public float boxCastDistance;
     public float jumpingBoxCastDistance;
     public bool beenHit = false;
+    public bool isDead = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -276,7 +278,7 @@ public class Player_Controller : MonoBehaviour
             {
                 StartCoroutine(reload());
             }
-            else if(!isReloading && onGround)
+            else if(!isReloading)
             { 
                 StartCoroutine(shoot());
             }
@@ -294,11 +296,6 @@ public class Player_Controller : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(dash(x_raw));
-        }
-
-        if (beenHit)
-        {
-            StartCoroutine(playerHit());
         }
     }
 
@@ -361,7 +358,6 @@ public class Player_Controller : MonoBehaviour
         ammo = maxAmmo;
         isReloading = false;
         controller.updateAmmoImageUI();
-
         yield return null;
     }
 
@@ -371,8 +367,17 @@ public class Player_Controller : MonoBehaviour
         {
             if (playerHealth <= 0f)
             {
-                animator.SetBool("isDead", true);
-                Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
+                playerCamera.GetComponent<CameraFollow_Controller>().enabled = false;
+                rb.gravityScale = 0.0f;
+                BetterJump_Controller.enabled = false;
+                playerCanInput = false;
+                rb.linearVelocity = Vector2.zero;
+                animator.SetTrigger("isDead");
+
+                //Comeback and fix this, a .8f delay is not good and should rely on the animator
+                Destroy(gameObject, .8f);
+
+
                 //more game over stuff
             }
             else
