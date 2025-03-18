@@ -870,7 +870,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 365736356}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Bullet Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2133,7 +2133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 672363371}
   - component: {fileID: 672363370}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Footsteps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2350,7 +2350,7 @@ GameObject:
   - component: {fileID: 688417240}
   - component: {fileID: 688417238}
   - component: {fileID: 688417239}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WalkingTurnParticleEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7763,7 +7763,7 @@ GameObject:
   - component: {fileID: 1029756671}
   - component: {fileID: 1029756672}
   - component: {fileID: 1029756674}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -8341,7 +8341,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1079597542}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Crouched Bullet Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9867,7 +9867,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1645480888}
   - component: {fileID: 1645480889}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: pickUp
   m_Icon: {fileID: 0}
@@ -10531,7 +10531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2070478481}
   - component: {fileID: 2070478482}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: pickUp
   m_Icon: {fileID: 0}
