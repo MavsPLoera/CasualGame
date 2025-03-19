@@ -120,7 +120,7 @@ public class Player_Controller : MonoBehaviour
         uncrouchedHitBoxOffset = playerHitBox.offset;
         uncrouchedHitBoxSize = playerHitBox.size;
         jumpForceButtonReleased = jumpForceHeld / 2f;
-        doubleJumpForce = jumpForce * .9f;
+        doubleJumpForce = jumpForce;
         ammo = maxAmmo;
     }
 
@@ -163,14 +163,15 @@ public class Player_Controller : MonoBehaviour
          * 
          * otherwise the player will run at full speed on the ground or the player will move at air speed if not.
          */
-        if(y_raw == -1f)
+        if(y_raw == -1f && onGround)
         {
-            if(Mathf.Abs(rb.linearVelocityX) > 0f)
-            {
-                slideTimer += Time.deltaTime;
-                rb.linearVelocityX = Mathf.Lerp(rb.linearVelocityX, 0.0f, slideTimer / slideTime);
-            }
+            //if (Mathf.Abs(rb.linearVelocityX) > 0f)
+            //{
+            //    slideTimer += Time.deltaTime;
+            //    rb.linearVelocityX = Mathf.Lerp(rb.linearVelocityX, 0f, slideTimer / slideTime);
+            //}
 
+            rb.linearVelocityX = 0.0f;
             animator.SetBool("isCrouching", true);
             animator.SetBool("isRunning", false);
 
@@ -315,7 +316,7 @@ public class Player_Controller : MonoBehaviour
 
     private IEnumerator dash(float x_raw)
     {
-        Physics2D.IgnoreLayerCollision(6, 7, true);
+        Physics2D.IgnoreLayerCollision(8, 7, true);
         canDash = false;
         isDashing = true;
         trailRenderer.emitting = true;
@@ -346,7 +347,7 @@ public class Player_Controller : MonoBehaviour
         trailRenderer.emitting = false;
         isDashing = false;
         BetterJump_Controller.enabled = true;
-        Physics2D.IgnoreLayerCollision(6, 7, false);
+        Physics2D.IgnoreLayerCollision(8, 7, false);
         rb.gravityScale = prevGravity;
         yield return null;
     }
@@ -400,7 +401,7 @@ public class Player_Controller : MonoBehaviour
 
             if (!landAlreadyPlayed)
             {
-                playerAudioSource.PlayOneShot(playerLandSFX);
+                playSound(playerLandSFX);
                 landAlreadyPlayed = true;
             }
             return true;
