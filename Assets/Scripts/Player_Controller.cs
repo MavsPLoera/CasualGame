@@ -15,8 +15,6 @@ public class Player_Controller : MonoBehaviour
     public float jumpForce;
     public float slideTimer = 0.0f;
     public float slideTime;
-    public bool facingRight = true;
-    public bool invulnerable = false;
 
     [Header("Conditional Player Stats")]
     public float walkSpeed;
@@ -36,9 +34,11 @@ public class Player_Controller : MonoBehaviour
 
     [Header("Player Conditional Traits")]
     public bool playerCanInput = true;
+    public bool isBulletTime;
     public bool canDoubleJump = true;
     public bool storedJump = false;
-    public bool isFacingRight = true;
+    public bool invulnerable = false;
+    public bool isFacingRight;
     public bool onGround;
 
     [Header("Player Dashing Traits")]
@@ -56,11 +56,11 @@ public class Player_Controller : MonoBehaviour
     [Header("Player Shooting Traits")]
     public bool isReloading;
     public bool isShooting;
+    public float bulletTimeDuration;
     public int ammo = 6;
     public int maxAmmo = 10;
     public float shootingCooldown = .2f;
     public float shootTime = .05f;
-    public bool storedShot;
 
     [Header("Player HitBox Traits")]
     public BoxCollider2D playerHitBox;
@@ -99,6 +99,8 @@ public class Player_Controller : MonoBehaviour
     public float jumpingBoxCastDistance;
     public bool beenHit = false;
     public bool isDead = false;
+    public bool storedVelocity;
+    public float initialVelocity;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -151,7 +153,6 @@ public class Player_Controller : MonoBehaviour
         float y_raw = Input.GetAxisRaw("Vertical");
 
         Vector2 direction = new Vector2(x, 0);
-        //Debug.DrawRay(transform.position, new Vector3(0, -jumpBufferDistance, 0), Color.red);
 
         //Move the player based on player speed and keep current y linear velocity
         flip(x_raw);
@@ -165,23 +166,32 @@ public class Player_Controller : MonoBehaviour
          */
         if(y_raw == -1f && onGround)
         {
-            //if (Mathf.Abs(rb.linearVelocityX) > 0f)
-            //{
-            //    slideTimer += Time.deltaTime;
-            //    rb.linearVelocityX = Mathf.Lerp(rb.linearVelocityX, 0f, slideTimer / slideTime);
-            //}
+            if (Mathf.Abs(rb.linearVelocityX) > 0f)
+            {
+                slideTimer += Time.deltaTime;
+                if(!storedVelocity)
+                {
+                    initialVelocity = rb.linearVelocityX;
+                    storedVelocity = true;
+                }
 
-            rb.linearVelocityX = 0.0f;
+                rb.linearVelocityX = Mathf.Lerp(initialVelocity, 0f, (slideTimer / slideTime));
+                Debug.Log(rb.linearVelocityX);
+            }
+
             animator.SetBool("isCrouching", true);
             animator.SetBool("isRunning", false);
 
-            //Need to shrink hitbox
+            //Shrink player hitbox to be the correct size of the sprite and change the bullet spawn position as well.
             playerHitBox.offset = crouchedHitBoxOffset;
             playerHitBox.size = crouchedHitBoxSize;
             currentSpawnLocation = crouchedBulletSpawnLocation.transform;
         }
         else
         {
+            initialVelocity = 0.0f;
+            storedVelocity = false;
+
             slideTimer = 0.0f;
             currentSpawnLocation = bulletSpawnLocation.transform;
             if (onGround)
@@ -250,13 +260,15 @@ public class Player_Controller : MonoBehaviour
                 storedJump = true;
             }
         }
-        else if((Input.GetButtonDown("Fire1") && !onGround))
+
+        //Did same logic for jump buffering but now player can shoot any time in the air.
+        /*else if((Input.GetButtonDown("Fire1") && !onGround))
         {
             if (movementBufferCheck())
             {
                 storedShot = true;
             }
-        }
+        }*/
 
         //Half the velocity of the jump when the player releases the jump button
         if (Input.GetKeyUp(KeyCode.Space) && !onGround)
@@ -273,7 +285,7 @@ public class Player_Controller : MonoBehaviour
          * 
          * otherwise if the player is reloaded trigger the reloaded sequence and do not let the player shoot till ammo is refilled.
          */
-        if (Input.GetButtonDown("Fire1") || storedShot)
+        if (Input.GetButtonDown("Fire1"))
         {
             if (ammo == 0 && isReloading == false)
             {
@@ -303,9 +315,12 @@ public class Player_Controller : MonoBehaviour
     private IEnumerator shoot()
     {
         //Modify this to be coroutine to shoot and play animation.
-        ammo--;
-        controller.updateAmmoImageUI();
-        storedShot = false;
+        //Add if statement for bullet time
+        if(!isBulletTime)
+        {
+            ammo--;
+        }
+
         animator.SetBool("isShooting", true);
         Instantiate(bullet, currentSpawnLocation.position, bulletSpawnLocation.transform.rotation);
         playerAudioSource.PlayOneShot(shootGunSFX);
@@ -437,6 +452,7 @@ public class Player_Controller : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             isFacingRight = false;
+
             if (onGround)
             {
                 velocity.x = .5f;
@@ -497,6 +513,24 @@ public class Player_Controller : MonoBehaviour
         invulnerable = true;
         yield return new WaitForSeconds(.1f);
         invulnerable = false;
+        yield return null;
+    }
+
+    //Main used for the pick up to be able to start a corutine. Why cant I call a corutine in another script??
+    public void bulletPickUp()
+    {
+        StartCoroutine(bulletTime());
+    }
+
+    public IEnumerator bulletTime()
+    {
+        isBulletTime = true;
+        ammo = maxAmmo;
+        controller.updateAmmoImageUI();
+        controller.changeAmmoImageColor(new Color(249f, 0f, 255f));
+        yield return new WaitForSeconds(bulletTimeDuration);
+        isBulletTime = false;
+        controller.changeAmmoImageColor(new Color(255f, 255f, 255f));
         yield return null;
     }
 }

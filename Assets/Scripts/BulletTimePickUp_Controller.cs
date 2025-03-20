@@ -6,6 +6,8 @@ public class BulletTimePickUp_Controller : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            collision.gameObject.GetComponent<Player_Controller>().bulletPickUp();
+
             Destroy(gameObject);
         }
     }

@@ -213,6 +213,66 @@ Tilemap:
   m_GameObject: {fileID: 51731896}
   m_Enabled: 1
   m_Tiles:
+  - first: {x: 0, y: -8, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 11
+      m_TileSpriteIndex: 11
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 1, y: -8, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 12
+      m_TileSpriteIndex: 12
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 2, y: -8, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 3, y: -8, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 4, y: -8, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 5, y: -8, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 14
+      m_TileSpriteIndex: 14
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 7, y: -8, z: 0}
     second:
       serializedVersion: 2
@@ -787,6 +847,14 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 8fd1468ea4352d9439b4b5bd2bd6e257, type: 2}
   - m_RefCount: 7
     m_Data: {fileID: 11400000, guid: 5c1bb1860ab3ebb47a437b44e53a534a, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 3abe8f208be0f5b4a8994b570d30e3e4, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: fac6256e9be29184bb501c51a81c9232, type: 2}
+  - m_RefCount: 3
+    m_Data: {fileID: 11400000, guid: 61dcfaaeb0340704ba6d4a35f2f8af4b, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: fee1ebce31b04ee43b9db9814abb18ea, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 2
     m_Data: {fileID: -219198427, guid: 2b0294d5fa7c21f49956cd7bef1bbcba, type: 3}
@@ -810,8 +878,16 @@ Tilemap:
     m_Data: {fileID: -1271328597, guid: 2b0294d5fa7c21f49956cd7bef1bbcba, type: 3}
   - m_RefCount: 7
     m_Data: {fileID: 1372382052, guid: 2b0294d5fa7c21f49956cd7bef1bbcba, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 676567237, guid: 2b0294d5fa7c21f49956cd7bef1bbcba, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -1148421963, guid: 2b0294d5fa7c21f49956cd7bef1bbcba, type: 3}
+  - m_RefCount: 3
+    m_Data: {fileID: 303627362, guid: 2b0294d5fa7c21f49956cd7bef1bbcba, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 1616599973, guid: 2b0294d5fa7c21f49956cd7bef1bbcba, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 55
+  - m_RefCount: 61
     m_Data:
       e00: 1
       e01: 0
@@ -830,7 +906,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 55
+  - m_RefCount: 61
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -1178,7 +1254,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9243891, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1213,7 +1289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 102050195}
   - component: {fileID: 102050196}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: bulletsLeft2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1276,8 +1352,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1575942089
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: -397579444, guid: 77a30ad43d902fe4bbbe6fc084e0ce12, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1300,7 +1376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 216251584}
   - component: {fileID: 216251585}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: bulletsLeft5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1363,8 +1439,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1575942089
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: -397579444, guid: 77a30ad43d902fe4bbbe6fc084e0ce12, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1387,7 +1463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 221913166}
   - component: {fileID: 221913167}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: bulletsLeft7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1450,8 +1526,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1575942089
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: -397579444, guid: 77a30ad43d902fe4bbbe6fc084e0ce12, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1505,7 +1581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 386038700}
   - component: {fileID: 386038701}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: bulletsLeft1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1568,9 +1644,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -1575942089
+  m_SortingLayer: 4
+  m_SortingOrder: 0
   m_Sprite: {fileID: -397579444, guid: 77a30ad43d902fe4bbbe6fc084e0ce12, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1592,7 +1668,7 @@ GameObject:
   m_Component:
   - component: {fileID: 391722812}
   - component: {fileID: 391722813}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: bulletsLeft3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1655,8 +1731,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1575942089
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: -397579444, guid: 77a30ad43d902fe4bbbe6fc084e0ce12, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1916,11 +1992,31 @@ Tilemap:
   m_GameObject: {fileID: 528487602}
   m_Enabled: 1
   m_Tiles:
+  - first: {x: 8, y: -8, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 11, y: -8, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 2
       m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 13, y: -8, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2058,21 +2154,21 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 2
+    m_Data: {fileID: 11400000, guid: 31b4aa5ef8f5f66459fb733d42e6f20c, type: 2}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 5c1bb1860ab3ebb47a437b44e53a534a, type: 2}
   - m_RefCount: 11
     m_Data: {fileID: 11400000, guid: 9ccf5c2dd1f20e041a49c1e9ef9003f0, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 2
+    m_Data: {fileID: 244352229, guid: 2b0294d5fa7c21f49956cd7bef1bbcba, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: 1372382052, guid: 2b0294d5fa7c21f49956cd7bef1bbcba, type: 3}
   - m_RefCount: 11
     m_Data: {fileID: -970794082, guid: 2b0294d5fa7c21f49956cd7bef1bbcba, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 14
+  - m_RefCount: 16
     m_Data:
       e00: 1
       e01: 0
@@ -2091,13 +2187,13 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 14
+  - m_RefCount: 16
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: 0, y: -8, z: 0}
-  m_Size: {x: 13, y: 11, z: 1}
+  m_Size: {x: 14, y: 11, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -2239,7 +2335,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2894,7 +2990,7 @@ GameObject:
   m_Component:
   - component: {fileID: 676194945}
   - component: {fileID: 676194946}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: bulletsLeft8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2957,8 +3053,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1575942089
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: -397579444, guid: 77a30ad43d902fe4bbbe6fc084e0ce12, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8302,7 +8398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 976295309}
   - component: {fileID: 976295310}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: bulletsLeft10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8365,8 +8461,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1575942089
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: -397579444, guid: 77a30ad43d902fe4bbbe6fc084e0ce12, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8521,9 +8617,7 @@ MonoBehaviour:
   currentMax: 0
   jumpForce: 10
   slideTimer: 0
-  slideTime: 3
-  facingRight: 1
-  invulnerable: 0
+  slideTime: 0.3
   walkSpeed: 8
   maxWalkingSpeed: 8
   airSpeed: 6
@@ -8537,8 +8631,10 @@ MonoBehaviour:
   coyoteTimer: 0
   coyoteTime: 0.085
   playerCanInput: 1
+  isBulletTime: 0
   canDoubleJump: 1
   storedJump: 0
+  invulnerable: 0
   isFacingRight: 1
   onGround: 0
   bullet: {fileID: 2081775365694555062, guid: f9e775530fe88664f85a85bdfffa69f8, type: 3}
@@ -8553,11 +8649,11 @@ MonoBehaviour:
   trailRenderer: {fileID: 0}
   isReloading: 0
   isShooting: 0
+  bulletTimeDuration: 5
   ammo: 6
   maxAmmo: 10
   shootingCooldown: 1
   shootTime: 0.05
-  storedShot: 0
   playerHitBox: {fileID: 0}
   uncrouchedHitBoxOffset: {x: 0, y: 0}
   uncrouchedHitBoxSize: {x: 0, y: 0}
@@ -8590,6 +8686,8 @@ MonoBehaviour:
   jumpingBoxCastDistance: 0.25
   beenHit: 0
   isDead: 0
+  storedVelocity: 0
+  initialVelocity: 0
 --- !u!114 &1029756669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8800,7 +8898,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1058392340}
   - component: {fileID: 1058392341}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: bulletsLeft6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8863,8 +8961,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1575942089
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: -397579444, guid: 77a30ad43d902fe4bbbe6fc084e0ce12, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8887,7 +8985,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1077833578}
   - component: {fileID: 1077833579}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: bulletsLeft9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8950,8 +9048,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1575942089
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: -397579444, guid: 77a30ad43d902fe4bbbe6fc084e0ce12, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10238,8 +10336,8 @@ Tilemap:
   - first: {x: -1, y: -2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 11
-      m_TileSpriteIndex: 4
+      m_TileIndex: 9
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -10268,8 +10366,8 @@ Tilemap:
   - first: {x: 2, y: -2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 11
-      m_TileSpriteIndex: 4
+      m_TileIndex: 12
+      m_TileSpriteIndex: 5
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -10375,13 +10473,13 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 3b53079a8cf64bb449348ff23d94fae5, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: a2d9328126b4bc649ab119204d2b3b4f, type: 2}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: b1b142bb515dd4a4898369cb351d01c8, type: 2}
   - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: 44fab9665c1915740975142931f7748a, type: 2}
-  - m_RefCount: 3
+  - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 994103b88d975ac4eae2c2ee638f2295, type: 2}
-  - m_RefCount: 8
+  - m_RefCount: 9
     m_Data: {fileID: 11400000, guid: bcc0fe2de26739848a3bc1ccfda6b966, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 903360f46df5e8349906f51ed960bd3c, type: 2}
@@ -10390,13 +10488,13 @@ Tilemap:
     m_Data: {fileID: 2711269817896458963, guid: 2b0294d5fa7c21f49956cd7bef1bbcba, type: 3}
   - m_RefCount: 8
     m_Data: {fileID: 3897890590925500772, guid: 2b0294d5fa7c21f49956cd7bef1bbcba, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -96777240, guid: 2b0294d5fa7c21f49956cd7bef1bbcba, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 1483436334, guid: 2b0294d5fa7c21f49956cd7bef1bbcba, type: 3}
-  - m_RefCount: 3
+  - m_RefCount: 1
     m_Data: {fileID: 1601766400, guid: 2b0294d5fa7c21f49956cd7bef1bbcba, type: 3}
-  - m_RefCount: 8
+  - m_RefCount: 9
     m_Data: {fileID: -552444068, guid: 2b0294d5fa7c21f49956cd7bef1bbcba, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 98099860480728376, guid: 2b0294d5fa7c21f49956cd7bef1bbcba, type: 3}
@@ -10470,7 +10568,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1270697546}
   - component: {fileID: 1270697547}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: bulletsLeft4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10533,8 +10631,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1575942089
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: -397579444, guid: 77a30ad43d902fe4bbbe6fc084e0ce12, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11027,7 +11125,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1694803739}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BulletImages
   m_TagString: Untagged
   m_Icon: {fileID: 0}

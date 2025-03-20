@@ -79,4 +79,13 @@ public class GameUI_Controller : MonoBehaviour
         }
 
     }
+
+    //Change color of the bullet images when a sort of event happens.
+    public void changeAmmoImageColor(Color color)
+    {
+        for (int i = 0; i < playerController.maxAmmo; i++)
+        {
+            bulletImages[i].GetComponent<SpriteRenderer>().color = color;
+        }
+    }
 }
