@@ -194,7 +194,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1026729131
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -954,7 +954,7 @@ GameObject:
   - component: {fileID: 78633576}
   - component: {fileID: 78633578}
   - component: {fileID: 78633577}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: PlayerLivesText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1213,7 +1213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 102050195}
   - component: {fileID: 102050196}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bulletsLeft2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1300,7 +1300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 216251584}
   - component: {fileID: 216251585}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bulletsLeft5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1387,7 +1387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 221913166}
   - component: {fileID: 221913167}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bulletsLeft7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1505,7 +1505,7 @@ GameObject:
   m_Component:
   - component: {fileID: 386038700}
   - component: {fileID: 386038701}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bulletsLeft1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1592,7 +1592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 391722812}
   - component: {fileID: 391722813}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bulletsLeft3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1897,7 +1897,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 352926025
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -2410,7 +2410,7 @@ GameObject:
   - component: {fileID: 612363619}
   - component: {fileID: 612363621}
   - component: {fileID: 612363620}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: AmmoStatusText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2572,7 +2572,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000555bcdc24b9b5b1c49390915
+  m_ApplyToSortingLayers: 00000000555bcdc24b9b5b1c49390915370811a2
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -2630,7 +2630,7 @@ GameObject:
   - component: {fileID: 660832499}
   - component: {fileID: 660832501}
   - component: {fileID: 660832500}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: TimerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2894,7 +2894,7 @@ GameObject:
   m_Component:
   - component: {fileID: 676194945}
   - component: {fileID: 676194946}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bulletsLeft8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8302,7 +8302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 976295309}
   - component: {fileID: 976295310}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bulletsLeft10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8800,7 +8800,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1058392340}
   - component: {fileID: 1058392341}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bulletsLeft6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8887,7 +8887,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1077833578}
   - component: {fileID: 1077833579}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bulletsLeft9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9093,7 +9093,7 @@ GameObject:
   - component: {fileID: 1146329473}
   - component: {fileID: 1146329475}
   - component: {fileID: 1146329474}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9229,7 +9229,7 @@ GameObject:
   - component: {fileID: 1181269738}
   - component: {fileID: 1181269740}
   - component: {fileID: 1181269739}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: GameOver_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10470,7 +10470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1270697546}
   - component: {fileID: 1270697547}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bulletsLeft4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10835,7 +10835,7 @@ GameObject:
   - component: {fileID: 1557217908}
   - component: {fileID: 1557217910}
   - component: {fileID: 1557217909}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: GameUI_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11027,7 +11027,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1694803739}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: BulletImages
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11314,7 +11314,7 @@ GameObject:
   - component: {fileID: 1830936129}
   - component: {fileID: 1830936131}
   - component: {fileID: 1830936130}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: GameWin_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11390,7 +11390,7 @@ GameObject:
   - component: {fileID: 1834260994}
   - component: {fileID: 1834260993}
   - component: {fileID: 1834260992}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11457,8 +11457,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -1575942089
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1834260995
 RectTransform:
