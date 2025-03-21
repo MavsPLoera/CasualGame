@@ -96,6 +96,7 @@ public class Player_Controller : MonoBehaviour
     public Animator animator;
     public Vector2 boxSize;
     public Transform crouchBulletSpawn;
+    public SpriteRenderer spriteRenderer;
     public float boxCastDistance;
     public float jumpingBoxCastDistance;
     public bool beenHit = false;
@@ -114,6 +115,7 @@ public class Player_Controller : MonoBehaviour
         animator = GetComponent<Animator>();
         playerHitBox = GetComponent<BoxCollider2D>();
         controller = gameUI.GetComponent<GameUI_Controller>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         currentSpawnLocation = bulletSpawnLocation.transform;
         controller.updatePlayerLives();
         controller.updateScore(0);
@@ -553,6 +555,7 @@ public class Player_Controller : MonoBehaviour
         ammo = maxAmmo;
         controller.updateAmmoImageUI();
         controller.changeAmmoImageColor(Color.magenta);
+        spriteRenderer.color= Color.magenta;
         SpriteRenderer temp = bullet.GetComponent<SpriteRenderer>();
         temp.color = Color.magenta;
 
@@ -565,6 +568,7 @@ public class Player_Controller : MonoBehaviour
         isBulletTime = false;
         controller.changeAmmoImageColor(Color.white);
         temp.color = Color.white;
+        spriteRenderer.color = Color.white;
         yield return null;
     }
 }

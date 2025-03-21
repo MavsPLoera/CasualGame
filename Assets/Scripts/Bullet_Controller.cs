@@ -21,11 +21,15 @@ public class Bullet_Controller : MonoBehaviour
     {
         if(collision.CompareTag("enemy"))
         {
-            //Do enemy damage stuff
+            rb.linearVelocity = Vector3.zero;
+            collision.gameObject.GetComponent<Enemy_Controller>().death();
+            animator.SetBool("destroyed", true);
+            circleCollider.enabled = false;
+            Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
         }
         else if(!collision.CompareTag("Player"))
         {
-            rb.linearVelocity = Vector3.zero;;
+            rb.linearVelocity = Vector3.zero;
             animator.SetBool("destroyed", true);
             circleCollider.enabled = false;
             Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
