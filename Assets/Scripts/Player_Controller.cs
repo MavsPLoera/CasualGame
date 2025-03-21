@@ -176,7 +176,6 @@ public class Player_Controller : MonoBehaviour
                 }
 
                 rb.linearVelocityX = Mathf.Lerp(initialVelocity, 0f, (slideTimer / slideTime));
-                Debug.Log(rb.linearVelocityX);
             }
 
             animator.SetBool("isCrouching", true);
@@ -189,15 +188,21 @@ public class Player_Controller : MonoBehaviour
         }
         else
         {
+            /*
+             * Reset the values used for coruching if the player is not longer holding s
+             * Also update the hit box and bullet spawn position from what is was when crouched.
+             */
+
             initialVelocity = 0.0f;
             storedVelocity = false;
-
             slideTimer = 0.0f;
             currentSpawnLocation = bulletSpawnLocation.transform;
+            playerHitBox.offset = uncrouchedHitBoxOffset;
+            playerHitBox.size = uncrouchedHitBoxSize;
+
+            //If statement is to change the functionality of the players movement while in the air or on the ground. Player has two different speeds.
             if (onGround)
             {
-                playerHitBox.offset = uncrouchedHitBoxOffset;
-                playerHitBox.size = uncrouchedHitBoxSize;
                 rb.linearVelocity = new Vector2(Mathf.Clamp(direction.x * playerSpeed, -maxWalkingSpeed, maxWalkingSpeed), rb.linearVelocityY);
             }
             else
@@ -209,8 +214,10 @@ public class Player_Controller : MonoBehaviour
             animator.SetBool("isCrouching", false);
         }
 
-        //Check for the animator to stop playing the running animation if the player is not inputing anything. Idk why this is here but the program works :P
-        if(x_raw == 0f && y_raw == 0f && onGround)
+        /*
+         * Dont know why this is set up like this but if the player is not doing anything (Not pressing any keys). Then set the correct values for the aniamtor to go back to idle.
+         */
+        if (x_raw == 0f && y_raw == 0f && onGround)
         {
             animator.SetBool("isRunning", false);
         }
@@ -235,6 +242,8 @@ public class Player_Controller : MonoBehaviour
         * if they are they will change their respective bool value and the enxt time the onGround() check is true the move will trigger
         * 
         * jump buffering take prio over shoot buffering.
+        * 
+        * 3/20/2025: Jump buffering removed due to player being allowed to shoot during any time now.
         */
         if ((Input.GetKeyDown(KeyCode.Space) && (onGround == true || coyoteTimer >= 0) || (storedJump == true && onGround == true)))
         {
@@ -432,6 +441,7 @@ public class Player_Controller : MonoBehaviour
         }
     }
 
+    //Simple method to be able to call, to send a ray from the players position to see if the player hit a key close enought to the ground. Although the way the program ahs devloped the player only uses this for jump buffering.
     public bool movementBufferCheck()
     {
         if(Physics2D.Raycast(gameObject.transform.position, Vector2.down, jumpBufferDistance, LayerMask.GetMask("ground")))
@@ -444,6 +454,12 @@ public class Player_Controller : MonoBehaviour
         }
     }
 
+    /*
+     * Flip the player based on the x_raw horizontal input.
+     * When we do so we not only rotate the player like the in class example but we play a little dust particle effect as well.
+     * Depending on the direction the player is facing we will change the velocity of the particle effect to go in the opposite direction the player is moving.
+     * values are hard coded
+     */
     public void flip(float horizontalInput)
     {
         ParticleSystem.VelocityOverLifetimeModule velocity = dustParticle.velocityOverLifetime;
@@ -475,7 +491,7 @@ public class Player_Controller : MonoBehaviour
         }
     }
 
-    //Used for playing sounds that we want to range the pitch of
+    //Used for playing sounds that we want to range the pitch of. Otherwise the player can call the non changing pitch audio source
     public void playSound(AudioClip sound)
     {
         float temp = Random.Range(.9f, 1.1f);
@@ -490,7 +506,7 @@ public class Player_Controller : MonoBehaviour
         Gizmos.DrawRay(transform.position, -transform.up * jumpBufferDistance);
     }
 
-    //Call this when the player gets hit by enemy
+    //Call this when the player gets hit by enemy. Mirroring castlvania style knockback.
     public IEnumerator playerHit()
     {
         rb.linearVelocity = new Vector2(-10f, 5f);
@@ -509,10 +525,11 @@ public class Player_Controller : MonoBehaviour
     //Add more to this
     public IEnumerator temporaryInvulnerability()
     {
-        //Physics2D.IgnoreLayerCollision(6, 7, true); can use this
+        Physics2D.IgnoreLayerCollision(7, 8, true);
         invulnerable = true;
         yield return new WaitForSeconds(.1f);
         invulnerable = false;
+        Physics2D.IgnoreLayerCollision(7, 8, false);
         yield return null;
     }
 
@@ -522,15 +539,31 @@ public class Player_Controller : MonoBehaviour
         StartCoroutine(bulletTime());
     }
 
+    //Power up mode for the player. Still need to add some sounds and what not to this.
     public IEnumerator bulletTime()
     {
+        /*
+         * Refill player ammo back to full and update the UI to show accordingly
+         * Change the color of the player and UI bullets to magenta (for now) to show the player event change has happened.
+         * 
+         * We only need to call controller.updateAmmoImageUI due to the fact we are resetting ammo back to full.
+         */
         isBulletTime = true;
         ammo = maxAmmo;
         controller.updateAmmoImageUI();
-        controller.changeAmmoImageColor(new Color(249f, 0f, 255f));
+        controller.changeAmmoImageColor(Color.magenta);
+        SpriteRenderer temp = bullet.GetComponent<SpriteRenderer>();
+        temp.color = Color.magenta;
+
+
         yield return new WaitForSeconds(bulletTimeDuration);
+
+        /*
+         * Once bullet time is over we revert the colors back and turn bulletTime bool back to false
+         */
         isBulletTime = false;
-        controller.changeAmmoImageColor(new Color(255f, 255f, 255f));
+        controller.changeAmmoImageColor(Color.white);
+        temp.color = Color.white;
         yield return null;
     }
 }
