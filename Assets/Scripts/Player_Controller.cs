@@ -387,9 +387,9 @@ public class Player_Controller : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("enemy"))
+        if (collision.gameObject.CompareTag("enemy") || collision.gameObject.CompareTag("deadzone"))
         {
-            if (playerHealth <= 0f)
+            if (playerLives == 0)
             {
                 playerCamera.GetComponent<CameraFollow_Controller>().enabled = false;
                 rb.gravityScale = 0.0f;
@@ -406,8 +406,11 @@ public class Player_Controller : MonoBehaviour
             }
             else
             {
-                playerHealth -= 10f;
-                StartCoroutine(temporaryInvulnerability());
+                //animator.SetTrigger("isDead");
+                playerLives--;
+                controller.updatePlayerLives();
+                transform.position = lastTouched.position;
+                //StartCoroutine(temporaryInvulnerability());
             }
         }
     }
