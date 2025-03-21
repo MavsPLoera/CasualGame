@@ -94,7 +94,7 @@ public class Player_Controller : MonoBehaviour
     public ParticleSystem dustParticle;
     public Animator animator;
     public Vector2 boxSize;
-    public Transform crouchBulletSpawn; //NEEED TO ADD THIS
+    public Transform crouchBulletSpawn;
     public float boxCastDistance;
     public float jumpingBoxCastDistance;
     public bool beenHit = false;
@@ -270,6 +270,12 @@ public class Player_Controller : MonoBehaviour
             }
         }
 
+        //Need to mess with camera but basic respawn.
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            transform.position = lastTouched.position;
+        }
+
         //Did same logic for jump buffering but now player can shoot any time in the air.
         /*else if((Input.GetButtonDown("Fire1") && !onGround))
         {
@@ -436,7 +442,6 @@ public class Player_Controller : MonoBehaviour
             currentMax = maxAirSpeed;
             playerSpeed = airSpeed;
             animator.SetBool("isJumping", true);
-            lastTouched = gameObject.transform;
             return false;
         }
     }
