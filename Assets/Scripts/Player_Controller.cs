@@ -31,6 +31,7 @@ public class Player_Controller : MonoBehaviour
     public float jumpBufferDistance;
     public float coyoteTimer;
     public float coyoteTime = .2f;
+    public ParticleSystem doubleJumpParticles;
 
     [Header("Player Conditional Traits")]
     public bool playerCanInput = true;
@@ -260,6 +261,7 @@ public class Player_Controller : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocityX, 0);
             rb.linearVelocity += Vector2.up * doubleJumpForce;
             playSound(doubleJumpSFX);
+            doubleJumpParticles.Play();
             canDoubleJump = false;
         }
         else if (Input.GetKeyDown(KeyCode.Space) && !onGround)
@@ -275,15 +277,6 @@ public class Player_Controller : MonoBehaviour
         {
             transform.position = lastTouched.position;
         }
-
-        //Did same logic for jump buffering but now player can shoot any time in the air.
-        /*else if((Input.GetButtonDown("Fire1") && !onGround))
-        {
-            if (movementBufferCheck())
-            {
-                storedShot = true;
-            }
-        }*/
 
         //Half the velocity of the jump when the player releases the jump button
         if (Input.GetKeyUp(KeyCode.Space) && !onGround)
