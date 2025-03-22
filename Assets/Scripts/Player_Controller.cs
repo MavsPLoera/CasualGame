@@ -297,11 +297,7 @@ public class Player_Controller : MonoBehaviour
          */
         if (Input.GetButtonDown("Fire1"))
         {
-            if (ammo == 0 && isReloading == false)
-            {
-                StartCoroutine(reload());
-            }
-            else if(!isReloading)
+            if(!isReloading)
             { 
                 StartCoroutine(shoot());
             }
@@ -336,6 +332,12 @@ public class Player_Controller : MonoBehaviour
         playerAudioSource.PlayOneShot(shootGunSFX);
         yield return new WaitForSeconds(shootTime);
         animator.SetBool("isShooting", false);
+
+        if (ammo == 0 && isReloading == false)
+        {
+            StartCoroutine(reload());
+        }
+
         yield return null;
     }
 

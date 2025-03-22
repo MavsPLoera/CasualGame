@@ -17,9 +17,9 @@ public class Bullet_Controller : MonoBehaviour
         Destroy(gameObject, 2f);
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.CompareTag("enemy"))
+        if (collision.gameObject.CompareTag("enemy"))
         {
             rb.linearVelocity = Vector3.zero;
             collision.gameObject.GetComponent<Enemy_Controller>().death();
@@ -27,7 +27,7 @@ public class Bullet_Controller : MonoBehaviour
             circleCollider.enabled = false;
             Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
         }
-        else if(!collision.CompareTag("Player"))
+        else if (!collision.gameObject.CompareTag("Player"))
         {
             rb.linearVelocity = Vector3.zero;
             animator.SetBool("destroyed", true);
