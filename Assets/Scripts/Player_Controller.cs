@@ -10,6 +10,7 @@ public class Player_Controller : MonoBehaviour
     [Header("Current Player Stats")]
     public float playerHealth;
     public int playerLives = 3;
+    public float score = 0f;
     public float playerSpeed;
     public float currentMax;
     public float jumpForce;
@@ -117,9 +118,6 @@ public class Player_Controller : MonoBehaviour
         controller = gameUI.GetComponent<GameUI_Controller>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentSpawnLocation = bulletSpawnLocation.transform;
-        controller.updatePlayerLives();
-        controller.updateScore(0);
-
 
         //Set variables 
         uncrouchedHitBoxOffset = playerHitBox.offset;
@@ -262,7 +260,7 @@ public class Player_Controller : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocityX, 0);
             rb.linearVelocity += Vector2.up * doubleJumpForce;
-            playSound(doubleJumpSFX);
+            //playSound(doubleJumpSFX);
             doubleJumpParticles.Play();
             canDoubleJump = false;
         }
@@ -386,6 +384,7 @@ public class Player_Controller : MonoBehaviour
         ammo = maxAmmo;
         isReloading = false;
         controller.updateAmmoImageUI();
+        playerAudioSource.PlayOneShot(realodedSFX);
         yield return null;
     }
 
@@ -561,7 +560,6 @@ public class Player_Controller : MonoBehaviour
         SpriteRenderer temp = bullet.GetComponent<SpriteRenderer>();
         temp.color = Color.magenta;
 
-
         yield return new WaitForSeconds(bulletTimeDuration);
 
         /*
@@ -572,5 +570,11 @@ public class Player_Controller : MonoBehaviour
         temp.color = Color.white;
         spriteRenderer.color = Color.white;
         yield return null;
+    }
+
+    public void increaseScore(float amount)
+    {
+        score += amount;
+        controller.updateScore();
     }
 }

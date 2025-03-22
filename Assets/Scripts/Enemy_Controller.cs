@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Enemy_Controller : MonoBehaviour
 {
+    public GameObject player;
+    private Player_Controller playerController;
+    public float scoreAdded = 100f;
     public GameObject point1;
     public GameObject point2;
     public Rigidbody2D rb;
@@ -12,6 +15,8 @@ public class Enemy_Controller : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerController = player.GetComponent<Player_Controller>();
+
         goalPosition = point2.transform;
     }
 
@@ -42,6 +47,7 @@ public class Enemy_Controller : MonoBehaviour
 
     public void death()
     {
+        playerController.increaseScore(scoreAdded);
         Destroy(gameObject);
     }
 }

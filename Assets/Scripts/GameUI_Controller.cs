@@ -8,7 +8,6 @@ public class GameUI_Controller : MonoBehaviour
     public GameObject gameUI_Panel;
     public TextMeshProUGUI playerLivesText;
     public TextMeshProUGUI scoreText;
-    public int score = 0;
     public TextMeshProUGUI timerText;
     public float time = 300.0f;
     public TextMeshProUGUI ammoStatusText;
@@ -32,8 +31,9 @@ public class GameUI_Controller : MonoBehaviour
         gameOver_Panel.SetActive(false);
         gameWin_Panel.SetActive(false);
         gameUI_Panel.SetActive(true);
-        scoreText.text = score.ToString();
         playerController = player.GetComponent<Player_Controller>();
+        updateScore();
+        updatePlayerLives();
     }
 
     // Update is called once per frame
@@ -48,15 +48,14 @@ public class GameUI_Controller : MonoBehaviour
         }
     }
 
-    public void updateScore(int amount)
+    public void updateScore()
     {
-        score += amount;
-        scoreText.text = "Score: " + score.ToString();
+        scoreText.text = "Score: " + playerController.score;
     }
 
     public void updatePlayerLives()
     {
-        playerLivesText.text = "Lives: " + playerController.playerLives.ToString();
+        playerLivesText.text = "Lives: " + playerController.playerLives;
     }
 
     public void updateAmmoStatus(string message)
