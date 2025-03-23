@@ -226,21 +226,7 @@ public class Player_Controller : MonoBehaviour
          */
         if (x_raw == 0f && onGround)
         {
-            if (Mathf.Abs(rb.linearVelocityX) > 0f)
-            {
-                slideTimer += Time.deltaTime;
-                if (!storedVelocity)
-                {
-                    initialVelocity = rb.linearVelocityX;
-                    storedVelocity = true;
-                }
-
-                rb.linearVelocityX = Mathf.Lerp(initialVelocity, 0f, (slideTimer / slideTime));
-            }
-            else
-            {
-                storedVelocity = false;
-            }
+            rb.linearVelocityX *= .5f;
             animator.SetBool("isRunning", false);
         }
 
