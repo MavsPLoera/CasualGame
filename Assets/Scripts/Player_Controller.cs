@@ -432,16 +432,20 @@ public class Player_Controller : MonoBehaviour
 
     public IEnumerator respawn()
     {
+        //Trigger death animation to player and prevent player from using Inputs.
         playerCanInput = false;
         animator.SetTrigger("isDead");
         yield return new WaitForSeconds(.8f);
 
+        //After animation is finished update UI and teleport player back to the beginning.
         animator.Play("Idle", 0, 0f);
         playerLives--;
         controller.updatePlayerLives();
         transform.position = lastTouched.position;
         playerCamera.GetComponent<CameraFollow_Controller>().cameraToPlayer();
         yield return null;
+
+        //For a extra frame wait to give the player input again.
         playerCanInput = true;
     }
 
