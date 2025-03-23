@@ -1,28 +1,35 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy_Controller : MonoBehaviour
 {
-    public GameObject player;
-    private Player_Controller playerController;
     public float scoreAdded = 100f;
+    public float speed;
+    public bool dontMove = false;
     public GameObject point1;
     public GameObject point2;
-    public Rigidbody2D rb;
-    public Transform goalPosition;
-    public float speed;
+    private Rigidbody2D rb;
+    private Transform goalPosition;
+    
+    public ParticleSystem deathParticles; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerController = player.GetComponent<Player_Controller>();
-
         goalPosition = point2.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(dontMove)
+        {
+            return;
+        }
+
+
+        //Move between teo transform positions. If the goal position is met rotate the enemy and set the other point for the goal.
         Vector2 temp = goalPosition.position - transform.position;
         if(goalPosition == point2.transform)
         {
@@ -47,7 +54,10 @@ public class Enemy_Controller : MonoBehaviour
 
     public void death()
     {
-        playerController.increaseScore(scoreAdded);
-        Destroy(gameObject);
+        dontMove = true;
+        Player_Controller.instance.increaseScore(scoreAdded);
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        deathParticles.Play();
+        Destroy(gameObject, deathParticles.main.duration);
     }
 }

@@ -86,6 +86,7 @@ public class Player_Controller : MonoBehaviour
     public AudioClip hitSoundEffectSFX;
 
     [Header("Player Miscellaneous")]
+    public static Player_Controller instance;
     public Transform lastTouched;
     public GameObject gameUI;
     public GameUI_Controller controller;
@@ -119,12 +120,17 @@ public class Player_Controller : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentSpawnLocation = bulletSpawnLocation.transform;
 
+        //To avoid weird bug where sometimes bullet will be magenta instead of green
+        SpriteRenderer temp = bullet.GetComponent<SpriteRenderer>();
+        temp.color = Color.white;
+
         //Set variables 
         uncrouchedHitBoxOffset = playerHitBox.offset;
         uncrouchedHitBoxSize = playerHitBox.size;
         jumpForceButtonReleased = jumpForceHeld / 2f;
         doubleJumpForce = jumpForce;
         ammo = maxAmmo;
+        instance = this;
     }
 
     // Update is called once per frame
@@ -218,8 +224,23 @@ public class Player_Controller : MonoBehaviour
         /*
          * Dont know why this is set up like this but if the player is not doing anything (Not pressing any keys). Then set the correct values for the aniamtor to go back to idle.
          */
-        if (x_raw == 0f && y_raw == 0f && onGround)
+        if (x_raw == 0f && onGround)
         {
+            if (Mathf.Abs(rb.linearVelocityX) > 0f)
+            {
+                slideTimer += Time.deltaTime;
+                if (!storedVelocity)
+                {
+                    initialVelocity = rb.linearVelocityX;
+                    storedVelocity = true;
+                }
+
+                rb.linearVelocityX = Mathf.Lerp(initialVelocity, 0f, (slideTimer / slideTime));
+            }
+            else
+            {
+                storedVelocity = false;
+            }
             animator.SetBool("isRunning", false);
         }
 
@@ -270,12 +291,6 @@ public class Player_Controller : MonoBehaviour
             {
                 storedJump = true;
             }
-        }
-
-        //Need to mess with camera but basic respawn.
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            transform.position = lastTouched.position;
         }
 
         //Half the velocity of the jump when the player releases the jump button
@@ -409,13 +424,25 @@ public class Player_Controller : MonoBehaviour
             }
             else
             {
-                //animator.SetTrigger("isDead");
-                playerLives--;
-                controller.updatePlayerLives();
-                transform.position = lastTouched.position;
-                //StartCoroutine(temporaryInvulnerability());
+                rb.linearVelocity = Vector2.zero;
+                StartCoroutine(respawn());
             }
         }
+    }
+
+    public IEnumerator respawn()
+    {
+        playerCanInput = false;
+        animator.SetTrigger("isDead");
+        yield return new WaitForSeconds(.8f);
+
+        animator.Play("Idle", 0, 0f);
+        playerLives--;
+        controller.updatePlayerLives();
+        transform.position = lastTouched.position;
+        playerCamera.GetComponent<CameraFollow_Controller>().cameraToPlayer();
+        yield return null;
+        playerCanInput = true;
     }
 
     public bool isGrounded()
@@ -529,11 +556,11 @@ public class Player_Controller : MonoBehaviour
     //Add more to this
     public IEnumerator temporaryInvulnerability()
     {
-        Physics2D.IgnoreLayerCollision(7, 8, true);
+        Physics2D.IgnoreLayerCollision(9, 7, true);
         invulnerable = true;
         yield return new WaitForSeconds(.1f);
         invulnerable = false;
-        Physics2D.IgnoreLayerCollision(7, 8, false);
+        Physics2D.IgnoreLayerCollision(9, 7, false);
         yield return null;
     }
 

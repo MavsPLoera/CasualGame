@@ -68,4 +68,9 @@ public class CameraFollow_Controller : MonoBehaviour
 
         Gizmos.DrawWireCube(transform.position, new Vector3(border.x * 2, border.y * 2, 1));
     }
+
+    public void cameraToPlayer()
+    {
+        transform.position = new Vector3(player.transform.position.x, -.6f, -10f);
+    }
 }
