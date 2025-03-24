@@ -8,8 +8,11 @@ public class Enemy_Controller : MonoBehaviour
     public bool dontMove = false;
     public GameObject point1;
     public GameObject point2;
+    public AudioClip deathSound;
+    public AudioSource soundPlayer;
     private Rigidbody2D rb;
     private Transform goalPosition;
+    private BoxCollider2D boxCollider;
     
     public ParticleSystem deathParticles; 
 
@@ -17,6 +20,8 @@ public class Enemy_Controller : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        soundPlayer = GetComponent<AudioSource>();
+        boxCollider = GetComponent<BoxCollider2D>();
         goalPosition = point2.transform;
     }
 
@@ -55,9 +60,15 @@ public class Enemy_Controller : MonoBehaviour
     public void death()
     {
         dontMove = true;
+        boxCollider.enabled = false;
         Player_Controller.instance.increaseScore(scoreAdded);
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+        float temp = Random.Range(.90f, 1.1f);
+        soundPlayer.pitch = temp;
+        soundPlayer.PlayOneShot(deathSound);
+
         deathParticles.Play();
-        Destroy(gameObject, deathParticles.main.duration);
+        Destroy(gameObject, deathSound.length);
     }
 }

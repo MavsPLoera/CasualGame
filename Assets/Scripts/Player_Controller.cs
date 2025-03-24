@@ -79,7 +79,6 @@ public class Player_Controller : MonoBehaviour
     public AudioClip realodedSFX;
     public bool landAlreadyPlayed = false;
     public AudioClip playerLandSFX;
-    public AudioClip jumpSFX;
     public AudioClip doubleJumpSFX;
     public AudioClip dashSFX;
     public GameObject footSteps;
@@ -267,7 +266,7 @@ public class Player_Controller : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocityX, 0);
             rb.linearVelocity += Vector2.up * doubleJumpForce;
-            //playSound(doubleJumpSFX);
+            playSound(doubleJumpSFX);
             doubleJumpParticles.Play();
             canDoubleJump = false;
         }
@@ -407,12 +406,18 @@ public class Player_Controller : MonoBehaviour
 
 
                 //more game over stuff
+                controller.triggerGameLose();
             }
             else
             {
                 rb.linearVelocity = Vector2.zero;
                 StartCoroutine(respawn());
             }
+        }
+        else if (collision.gameObject.CompareTag("winzone"))
+        {
+            playerCanInput = false;
+            controller.triggerGameWin();
         }
     }
 
@@ -525,33 +530,6 @@ public class Player_Controller : MonoBehaviour
         Gizmos.DrawWireCube(transform.position - transform.up * boxCastDistance, boxSize);
 
         Gizmos.DrawRay(transform.position, -transform.up * jumpBufferDistance);
-    }
-
-    //Call this when the player gets hit by enemy. Mirroring castlvania style knockback.
-    public IEnumerator playerHit()
-    {
-        rb.linearVelocity = new Vector2(-10f, 5f);
-        playerCanInput = false;
-        beenHit = true;
-        animator.SetBool("isHit", true);
-        yield return new WaitForSeconds(.1f);
-        rb.linearVelocity = Vector2.zero;
-        playerCanInput = true;
-        beenHit = false;
-        animator.SetBool("isHit", false);
-        yield return null;
-    }
-
-
-    //Add more to this
-    public IEnumerator temporaryInvulnerability()
-    {
-        Physics2D.IgnoreLayerCollision(9, 7, true);
-        invulnerable = true;
-        yield return new WaitForSeconds(.1f);
-        invulnerable = false;
-        Physics2D.IgnoreLayerCollision(9, 7, false);
-        yield return null;
     }
 
     //Main used for the pick up to be able to start a corutine. Why cant I call a corutine in another script??

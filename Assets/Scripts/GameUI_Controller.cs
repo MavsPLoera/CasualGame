@@ -6,19 +6,15 @@ public class GameUI_Controller : MonoBehaviour
 {
     [Header("Game UI")]
     public GameObject gameUI_Panel;
+    public GameObject gameWin_Panel;
+    public TextMeshProUGUI gameWinScore;
+    public GameObject gameOver_Panel;
     public TextMeshProUGUI playerLivesText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timerText;
     public float time = 300.0f;
     public TextMeshProUGUI ammoStatusText;
-    public GameObject[] bulletImages; 
-
-    [Header("GameOver UI")]
-    public GameObject gameOver_Panel;
-
-    [Header("GameWin UI")]
-    public GameObject gameWin_Panel;
-
+    public GameObject[] bulletImages;
 
     [Header("Player")]
     public GameObject player;
@@ -39,13 +35,14 @@ public class GameUI_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (time <= 0f)
+        {
+            playerController.playerCanInput = false;
+            triggerGameLose();
+        }
+
         time -= Time.deltaTime;
         timerText.text = time.ToString(".");
-
-        if(time <= 0f)
-        {
-            //Call gameover on player
-        }
     }
 
     public void updateScore()
@@ -86,5 +83,18 @@ public class GameUI_Controller : MonoBehaviour
         {
             bulletImages[i].GetComponent<SpriteRenderer>().color = color;
         }
+    }
+
+    public void triggerGameWin()
+    {
+        gameUI_Panel.SetActive(false);
+        gameWin_Panel.SetActive(true);
+        gameWinScore.text = "SCORE: " + playerController.score.ToString();
+    }
+
+    public void triggerGameLose()
+    {
+        gameUI_Panel.SetActive(false);
+        gameOver_Panel.SetActive(true);
     }
 }

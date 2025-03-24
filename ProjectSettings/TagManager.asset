@@ -8,6 +8,7 @@ TagManager:
   - enemy
   - pickUp
   - deadzone
+  - winzone
   layers:
   - Default
   - TransparentFX
