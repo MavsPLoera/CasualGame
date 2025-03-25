@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class BetterJump_Controller : MonoBehaviour
 {
+    //Followed this tutorial for jumping https://www.youtube.com/watch?v=7KiK0Aqtmzc&t=0s
+    //This video also gives a good explanation on movement https://www.youtube.com/watch?v=STyY26a_dPY
+
     public float fallForce = 2.5f;
     public float earlyFallForce = 2f;
     public float maxFallSpeed;

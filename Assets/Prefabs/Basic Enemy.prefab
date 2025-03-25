@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6378323166639776256}
   - component: {fileID: 3391726635937545815}
   - component: {fileID: 4931072041134780426}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4900,9 +4900,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4492161371734638893}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Basic Enemy
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4934,7 +4934,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 547823151473603412}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Point 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5140,6 +5140,7 @@ MonoBehaviour:
   point2: {fileID: 6015569417058402805}
   deathSound: {fileID: 8300000, guid: 40e2324faab8d3a498e075e3b03ffe93, type: 3}
   soundPlayer: {fileID: 0}
+  verticalEnemy: 0
   deathParticles: {fileID: 3391726635937545815}
 --- !u!82 &7841988083851801190
 AudioSource:
@@ -5247,7 +5248,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3514460878490222672}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Point 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

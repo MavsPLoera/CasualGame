@@ -82,7 +82,6 @@ public class Player_Controller : MonoBehaviour
     public AudioClip doubleJumpSFX;
     public AudioClip dashSFX;
     public GameObject footSteps;
-    public AudioClip hitSoundEffectSFX;
 
     [Header("Player Miscellaneous")]
     public static Player_Controller instance;
@@ -341,7 +340,7 @@ public class Player_Controller : MonoBehaviour
 
     private IEnumerator dash(float x_raw)
     {
-        Physics2D.IgnoreLayerCollision(8, 7, true);
+        Physics2D.IgnoreLayerCollision(9, 7, true);
         canDash = false;
         isDashing = true;
         trailRenderer.emitting = true;
@@ -372,7 +371,7 @@ public class Player_Controller : MonoBehaviour
         trailRenderer.emitting = false;
         isDashing = false;
         BetterJump_Controller.enabled = true;
-        Physics2D.IgnoreLayerCollision(8, 7, false);
+        Physics2D.IgnoreLayerCollision(9, 7, false);
         rb.gravityScale = prevGravity;
         yield return null;
     }

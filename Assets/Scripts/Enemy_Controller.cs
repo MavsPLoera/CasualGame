@@ -10,6 +10,7 @@ public class Enemy_Controller : MonoBehaviour
     public GameObject point2;
     public AudioClip deathSound;
     public AudioSource soundPlayer;
+    public bool verticalEnemy;
     private Rigidbody2D rb;
     private Transform goalPosition;
     private BoxCollider2D boxCollider;
@@ -33,27 +34,53 @@ public class Enemy_Controller : MonoBehaviour
             return;
         }
 
-
-        //Move between teo transform positions. If the goal position is met rotate the enemy and set the other point for the goal.
-        Vector2 temp = goalPosition.position - transform.position;
-        if(goalPosition == point2.transform)
+        if(!verticalEnemy)
         {
-            rb.linearVelocity = new Vector2(speed, 0f);
+            //Move between teo transform positions. If the goal position is met rotate the enemy and set the other point for the goal.
+            Vector2 temp = goalPosition.position - transform.position;
+            if (goalPosition == point2.transform)
+            {
+                rb.linearVelocity = new Vector2(speed, 0f);
+            }
+            else
+            {
+                rb.linearVelocity = new Vector2(-speed, 0f);
+            }
+
+            if (Vector2.Distance(transform.position, goalPosition.position) < .05f && goalPosition == point2.transform)
+            {
+                goalPosition = point1.transform;
+                transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            }
+            else if (Vector2.Distance(transform.position, goalPosition.position) < .05f && goalPosition == point1.transform)
+            {
+                goalPosition = point2.transform;
+                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            }
         }
         else
         {
-            rb.linearVelocity = new Vector2(-speed, 0f);
-        }
+            //Move between teo transform positions. If the goal position is met rotate the enemy and set the other point for the goal.
+            Vector2 temp = goalPosition.position - transform.position;
+            if (goalPosition == point2.transform)
+            {
+                rb.linearVelocity = new Vector2(0f, speed);
+            }
+            else
+            {
+                rb.linearVelocity = new Vector2(0f, -speed);
+            }
 
-        if(Vector2.Distance(transform.position, goalPosition.position) < .05f  && goalPosition == point2.transform)
-        {
-            goalPosition = point1.transform;
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-        }
-        else if (Vector2.Distance(transform.position, goalPosition.position) < .05f && goalPosition == point1.transform)
-        {
-            goalPosition = point2.transform;
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            if (Vector2.Distance(transform.position, goalPosition.position) < .05f && goalPosition == point2.transform)
+            {
+                goalPosition = point1.transform;
+                //transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            }
+            else if (Vector2.Distance(transform.position, goalPosition.position) < .05f && goalPosition == point1.transform)
+            {
+                goalPosition = point2.transform;
+                //transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            }
         }
     }
 

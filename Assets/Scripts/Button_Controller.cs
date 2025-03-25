@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class Button_Controller : MonoBehaviour
 {
+    public GameObject instructions;
+    public GameObject controlInformation;
+
     public void loadGame()
     {
         SceneManager.LoadScene("SampleScene");
