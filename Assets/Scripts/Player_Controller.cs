@@ -81,6 +81,7 @@ public class Player_Controller : MonoBehaviour
     public AudioClip playerLandSFX;
     public AudioClip doubleJumpSFX;
     public AudioClip dashSFX;
+    public AudioClip deathSFX;
     public GameObject footSteps;
 
     [Header("Player Miscellaneous")]
@@ -405,6 +406,7 @@ public class Player_Controller : MonoBehaviour
 
 
                 //more game over stuff
+                playSound(deathSFX);
                 controller.triggerGameLose();
             }
             else
@@ -425,6 +427,7 @@ public class Player_Controller : MonoBehaviour
         //Trigger death animation to player and prevent player from using Inputs.
         playerCanInput = false;
         animator.SetTrigger("isDead");
+        playSound(deathSFX);
         yield return new WaitForSeconds(.8f);
 
         //After animation is finished update UI and teleport player back to the beginning.
