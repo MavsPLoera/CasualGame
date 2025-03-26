@@ -14,7 +14,7 @@ public class Bullet_Controller : MonoBehaviour
         animator = GetComponent<Animator>();
         circleCollider = GetComponent<CircleCollider2D>();
         rb.AddForce(transform.right * bulletSpeed);
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, .5f);
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
