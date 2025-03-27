@@ -21,11 +21,23 @@ public class Bullet_Controller : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("enemy"))
         {
-            rb.linearVelocity = Vector3.zero;
-            collision.gameObject.GetComponent<Enemy_Controller>().death();
-            animator.SetBool("destroyed", true);
-            circleCollider.enabled = false;
-            Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
+            //Check if the enemy shot is ethier a blockaed or not. If it is cause the enemey death sequence to start.
+            if (collision.gameObject.TryGetComponent<Enemy_Controller>(out Enemy_Controller temp))
+            {
+                rb.linearVelocity = Vector3.zero;
+                collision.gameObject.GetComponent<Enemy_Controller>().death();
+                animator.SetBool("destroyed", true);
+                circleCollider.enabled = false;
+                Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
+            }
+            else
+            {
+                rb.linearVelocity = Vector3.zero;
+                //collision.gameObject.GetComponent<Enemy_Controller>().death();
+                animator.SetBool("destroyed", true);
+                circleCollider.enabled = false;
+                Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
+            }
         }
         else if (!collision.gameObject.CompareTag("Player"))
         {
