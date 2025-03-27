@@ -417,7 +417,11 @@ public class Player_Controller : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("winzone"))
         {
+            Physics.gravity = new Vector3(0f, 0f, 0f);
             playerCanInput = false;
+            rb.linearVelocity = Vector2.zero;
+            rb.gravityScale = 0.0f;
+            BetterJump_Controller.enabled = false;
             controller.triggerGameWin();
         }
     }

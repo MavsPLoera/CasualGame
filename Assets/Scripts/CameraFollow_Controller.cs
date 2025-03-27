@@ -44,7 +44,7 @@ public class CameraFollow_Controller : MonoBehaviour
         }
 
         //If statement to change speed depending on if the player or the camera is faster.
-        float moveSpeed = rb.linearVelocity.magnitude > speed ? rb.linearVelocity.magnitude : speed;
+        float moveSpeed = rb.linearVelocity.magnitude;
         transform.position = Vector3.MoveTowards(transform.position, newPosition, moveSpeed * Time.deltaTime);
     }
 

@@ -47,7 +47,7 @@ public class GameUI_Controller : MonoBehaviour
 
     public void updateScore()
     {
-        scoreText.text = "Score: " + playerController.score;
+        scoreText.text = "SCORE: " + playerController.score;
     }
 
     public void updatePlayerLives()
@@ -89,7 +89,8 @@ public class GameUI_Controller : MonoBehaviour
     {
         gameUI_Panel.SetActive(false);
         gameWin_Panel.SetActive(true);
-        gameWinScore.text = "SCORE: " + playerController.score.ToString();
+        gameWinScore.text = "SCORE: " + playerController.score;
+        Destroy(gameObject);
     }
 
     public void triggerGameLose()
